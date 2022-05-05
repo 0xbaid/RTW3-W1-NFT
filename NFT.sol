@@ -10,6 +10,7 @@ import "@openzeppelin/contracts@4.6.0/utils/Counters.sol";
 contract ALCHEMY is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     uint256 MAX_SUPPLY = 100000;
+    //bonus
     mapping(address => uint) public mintsPerUser;
 
     Counters.Counter private _tokenIdCounter;
@@ -18,7 +19,8 @@ contract ALCHEMY is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     function safeMint(address to, string memory uri) public onlyOwner {
         require(_tokenIdCounter.current() <= MAX_SUPPLY, "I'm sorry we reached the cap");
-        require(mintsPerUser[msg.sender] <= 5, "Only 5 mints per user is allowed");
+        //bonus
+        require(mintsPerUser[msg.sender] <= 5, "Only 5 mints per user are allowed");
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
